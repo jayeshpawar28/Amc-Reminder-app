@@ -97,17 +97,33 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CustomerModel $customer)
+    public function edit($id)
     {
-        //
+        $data = CustomerModel::find($id);
+        return view('customer.edit', ['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, CustomerModel $customer)
+    public function update(Request $req, $id)
     {
-        //
+        $customer = CustomerModel::find($id);
+        
+        $data = $req->validate([
+            'customer_name' => 'required',
+            'mobile' => 'nullable',
+            'address' => 'nullable',
+            'email' => 'required|email|max:255',
+        ]);
+
+        if($customer){
+            $customer->update($data);
+            return redirect()->route('customer.show', $id)->with('success', 'Customer updated successfully.');
+        }
+
+        return redirect()->route('customer.show', $id);
+
     }
 
     /**

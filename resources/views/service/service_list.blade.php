@@ -42,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $row)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('customer.show', $row->customer->customer_pk) }}'" style="cursor: pointer;">
                                             <th scope="row">{{$loop->iteration}}</th>
                                             <td>{{ \Carbon\Carbon::parse($row->service_date)->format('d-m-Y')}}</td>
                                             <td>{{$row->customer->customer_name}}</td>

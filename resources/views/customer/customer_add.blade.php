@@ -11,11 +11,8 @@
             $todayDate = date('Y-m-d');
         @endphp
         <div class="container-fluid pt-4 px-4">
-            <form method="POST" action="{{ isset($customer) ? route('customer.update', $customer->customer_pk) : route('customer.store') }}">
+            <form method="POST" action="{{route('customer.store')}}">
                 @csrf
-                @if(isset($customer))
-                    @method('PUT')
-                @endif
                 <div class="row bg-light p-4 rounded h-100">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="">Customer > Add</h6>
@@ -30,7 +27,7 @@
                     <div class="col-md-12 col-xl-6">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Customer Name</label>
-                            <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="exampleInputEmail1" name="customer_name" value="{{ old('customer_name', isset($customer) ? $customer->customer_name : '') }}">
+                            <input type="text" class="form-control @error('customer_name') is-invalid @enderror" id="exampleInputEmail1" name="customer_name" value="{{ old('customer_name')}}">
                             <span class="text-danger">
                                 @error('customer_name')
                                     {{ $message }}
@@ -39,7 +36,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Mobile</label>
-                            <input type="text" class="form-control @error('mobile') is-invalid @enderror" id="exampleInputEmail1" name="mobile" value="{{ old('mobile', isset($customer) ? $customer->mobile : '') }}">
+                            <input type="text" class="form-control @error('mobile') is-invalid @enderror" id="exampleInputEmail1" name="mobile" value="{{ old('mobile') }}">
                             <span class="text-danger">
                                 @error('mobile')
                                     {{ $message }}
@@ -55,7 +52,7 @@
                     <div class="col-md-12 col-xl-6">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" name="email" value="{{ old('email', isset($customer) ? $customer->email : '') }}">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" name="email" value="{{ old('email') }}">
                             <span class="text-danger">
                                 @error('email')
                                     {{ $message }}
@@ -64,7 +61,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Address</label>
-                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputEmail1" name="address" value="{{ old('address', isset($customer) ? $customer->address : '') }}">
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputEmail1" name="address" value="{{ old('address') }}">
                             <span class="text-danger">
                                 @error('address')
                                     {{ $message }}
@@ -92,7 +89,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Start Date : </label>
-                            <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="exampleInputEmail1" name="start_date" value="{{ old('start_date', isset($customer) ? $customer->start_date : $todayDate) }}">
+                            <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="exampleInputEmail1" name="start_date" value="{{ $todayDate }}">
                             <span class="text-danger">
                                 @error('start_date')
                                     {{ $message }}
@@ -101,7 +98,7 @@
                         </div>
                         <div class="mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label">Remark : </label>
-                                    <textarea class="form-control @error('product_remark') is-invalid @enderror" name="product_remark" id="exampleFormControlTextarea1" rows="3">{{ old('product_remark', isset($customer) ? $customer->product_remark : '') }}</textarea>                                  
+                                    <textarea class="form-control @error('product_remark') is-invalid @enderror" name="product_remark" id="exampleFormControlTextarea1" rows="3">{{ old('product_remark') }}</textarea>                                  
                             <span class="text-danger">
                                 @error('product_remark')
                                     {{ $message }}
@@ -142,7 +139,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Product Amount : </label>
-                            <input type="text" class="form-control @error('product_amount') is-invalid @enderror" id="exampleInputEmail1" name="product_amount" value="{{ old('product_amount', isset($customer) ? $customer->product_amount : '') }}">
+                            <input type="text" class="form-control @error('product_amount') is-invalid @enderror" id="exampleInputEmail1" name="product_amount" value="{{ old('product_amount') }}">
                             <span class="text-danger">
                                 @error('product_amount')
                                     {{ $message }}

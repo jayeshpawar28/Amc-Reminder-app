@@ -9,9 +9,9 @@
             <!-- Navbar End -->
             <!-- Table Start -->
             <div class="container-fluid pt-4 px-4">
-                @if(session('msg'))
+                @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                    {{ session('msg') }}
+                    {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
@@ -21,11 +21,12 @@
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="">Customer > Details</h6>
                                 <div class="buttons">
-                                    <form action="{{ route('customer.destroy', $data->customer_pk) }}" method="POST">
+                                    <form action="{{ route('customer.destroy', $data->customer_pk) }}" method="POST" onsubmit="confirm('Confirm to Delete This Record')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button> |
-                                    </form>
+                                    <a href="{{route('customer.edit', $data->customer_pk)}}" class="btn btn-sm btn-primary">Update</a>
+                                </form>
                                 </div>
                             </div>
     

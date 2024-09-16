@@ -50,11 +50,12 @@
                                             <td>{{$row->product_name}}</td>
                                             <td>{{$row->product_rate}}</td>
                                             <td>{{$row->remark}}</td>
-                                            <td><a href="{{route('product.edit', $row->product_pk)}}">Update</a> |
-                                            <form action="{{route('product.destroy', $row->product_pk)}}" method="POST" onsubmit="confirm('Confirm to Delete Record')">
+                                            <td>
+                                            <form action="{{route('product.destroy', $row->product_pk)}}" method="POST" onsubmit="confirm('Confirm to Delete This Record')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-dager">Delete</button>
+                                            <a href="{{route('product.edit', $row->product_pk)}}" class="btn btn-sm btn-primary">Update</a> |
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                             </td>
                                         </tr>
